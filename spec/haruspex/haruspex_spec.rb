@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + "/../spec_helper")
 require 'haruspex/haruspex'
 
 describe Haruspex::Haruspex do
-  
+
   before(:each) do
     @player = Haruspex::Haruspex.new
   end
@@ -10,14 +10,14 @@ describe Haruspex::Haruspex do
   it "should be instantiable with no paramters" do
     lambda { Haruspex::Haruspex.new }.should_not raise_error
   end
-  
+
   it "should guess the letter which occurs in the most different words" do
     @player.word_list=["bal","bxq","bac"]
 
-    @player.new_game(6)    
+    @player.new_game(6)
     @player.guess("___", 6).should == 'b'
   end
-  
+
   it "should guess the next most common letter if the first guess is wrong" do
     @player.word_list=["bal","bxq","bac"]
 
@@ -25,15 +25,15 @@ describe Haruspex::Haruspex do
     @player.guess("___", 6).should == 'b'
     @player.guess("___", 5).should == 'a'
   end
-  
-  it "should partition by size" do 
+
+  it "should partition by size" do
     @player.word_list=["bal","bxq","bac", "aa", "ab"]
 
     @player.new_game(6)
     @player.guess("___", 6).should == 'b'
     @player.guess("___", 5).should == 'a'
   end
-  
+
   it "should refresh the dictionary after every game" do
     @player.word_list=["bal","bxq","bac", "aa", "ab"]
 
@@ -43,7 +43,7 @@ describe Haruspex::Haruspex do
     @player.new_game(6)
     @player.guess("__", 6).should == 'a'
   end
-  
+
   it "should remove words containing incorrect letters" do
     @player.word_list=["bal","bxq","bac", "gsn", "gtd", "arb"]
 
@@ -52,7 +52,7 @@ describe Haruspex::Haruspex do
     @player.incorrect_guess('b')
     @player.guess("___", 5).should == 'g'
   end
-  
+
   it "should remove words not containing correct letters" do
     @player.word_list=["aaa", "bac", "btr", "tub"]
 
@@ -61,7 +61,7 @@ describe Haruspex::Haruspex do
     @player.correct_guess('b')
     @player.guess("___", 5).should == 't'
   end
-  
+
   it "should match patterns after a successful guess" do
     @player.word_list=["bnt", "ntk", "btr", "tub", "ltr"]
 
@@ -70,7 +70,7 @@ describe Haruspex::Haruspex do
     @player.correct_guess('t')
     @player.guess("_t_", 5).should == 'r'
   end
-  
+
   # it "should win all 10k games" do
   #   wins = 0
   #   possible_words = load_words
@@ -100,7 +100,7 @@ describe Haruspex::Haruspex do
   #     p "record :: #{wins} / #{index}"
   #   end
   # end
-  # 
+  #
   # def filter word, correct_letters
   #   filtered_word = ""
   #   for letter_index in 0..word.size - 1 do
@@ -109,7 +109,7 @@ describe Haruspex::Haruspex do
   #   end
   #   return filtered_word
   # end
-  # 
+  #
   # def load_words
   #   words = []
   #   File.open File.dirname(__FILE__) + '/words', 'r' do |file|
@@ -117,7 +117,7 @@ describe Haruspex::Haruspex do
   #   end
   #   return words
   # end
-  # 
+  #
   # def loss_words
   #   words = []
   #   File.open File.dirname(__FILE__) + '/losses', 'r' do |file|

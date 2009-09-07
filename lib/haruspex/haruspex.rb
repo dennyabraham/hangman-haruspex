@@ -25,7 +25,7 @@ module Haruspex
     # guesses_left is how many guesses you have left before your player is hung.
     def guess(word, guesses_left)
       filter_dictionary_using word
-      letter_counts = count_occurrences 
+      letter_counts = count_occurrences
       answer = most_common_in letter_counts
       @remaining.delete answer
       return answer
@@ -38,17 +38,17 @@ module Haruspex
       end
       return occurrences
     end
-    
+
     def filter_dictionary_using word
       @dictionary.delete_if{|entry| entry.size != word.size }
       @dictionary.delete_if{|entry| !entry.match(Regexp.new(word.gsub('_', '\w')))}
     end
-    
+
     def most_common_in letter_counts
       max_occurrences = letter_counts.values.max
       return letter_counts.find{|letter, occurrences| occurrences == max_occurrences }.first
     end
-    
+
     # notifies you that your last guess was incorrect, and passes your guess back to the method
     def incorrect_guess(guess)
       @dictionary.delete_if{|entry| entry.include? guess }
