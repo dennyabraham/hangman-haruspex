@@ -1,0 +1,8 @@
+This is my ai for the limelight hangman tournament. (obviously) OMG VIM HAS SYNTAX HIGHLIGHTING????
+
+Retrospective:
+*I spent a lot longer on this than I realized. I started at midnight and by the time I was done it wound up five in the morning. This is fun and all, but unhealthy. I need to better organize blocks of time and possibly do more retrospectives even if they're less fun than the task I'm retrospecting or I didn't have any actual problems.
+*There are around 40 words (out of 10k) that my ai could not guess in the correct number of turns. I do not know how to improve this. Look at the 'losses' file under the spec/haruspex directory. They are words that are primarily anglo-saxon or loan words of similar construction. That is, they are nonmodular, short, and irregularly spelt (given meaning and even sometimes pronunciation). That means they are hard to predict and more costly to partition, at least at that length. I do not know of an optimization that, at least on the surface, will simultaneously find those words without clouding the solution space. I can investigate more, but with 99.5% victory currently, the improvement is marginal, though it may be complete victory. Of note is that with 1 additional turn, 30 of the 40 words are findable, with 2, 36 are findable, and with 3, all are mine.
+
+-dennyabraham
+email@dennyabraham.com
